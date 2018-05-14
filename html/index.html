@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>微博评论</title>
+    <!--<link href="style/weibo.css" rel="stylesheet" type="text/css" />-->
+    <script src="../js/angular-1.6.js"></script>
+<body>
+<!--脏检查：数据改变或者说有数据了，就叫脏检查，并不是轮询机制，angular只有在网页上的视图，或者是某个数据发生改变时才发生检查-->
+<!--比较ui上的数据与后台的数据是否一致-->
+<!--会得到一个$watch对象，三个参数-->
+<!--Angular实现了双向数据绑定。无非就是界面的操作能实事反应到数据，数据的更改也能在界面呈现。-->
+<!--界面到数据的更改，是由 UI 事件，ajax请求，或者timeout 等回调操作,而数据到界面的呈现则是由脏检查来做.-->
+<!--只有当触发UI事件，ajax请求或者 timeout 延迟，才会触发脏检查。-->
+<div ng-controller="DemoController">
+    <span ng-bind="num"></span>
+</div>
+<script>
+    var App = angular.module("app",[]);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button ng-click="increase">increase</button>
+<button ng-click="decrease">decrease</button>
+<span ng-bind="num1"></span>
+<span ng-bind="num2"></span>
+
+
+<script>
+    window.onload = function () {
+        var scope = {
+            increase : function () {
+                console.log(scope);
+                this.num1++;
+            },
+            decrease :function () {
+                console.log(scope);
+                this.num1--;
+            },
+            num1 : 0,
+            num2 : 3
+        };
+        function bind() {
+            var alist = document.querySelectorAll("[ng-click]");
+            for (var i=0,l=alist.length; i<l;i++){
+                alist[i].onclick = function (index) {
+                    return function () {
+                        var func = this.getAttribute('ng-click');
+//                        console.log(scope);
+//                        console.log(scope[func]);
+                          scope[func]();
+                          apply();
+                    }
+                }(i);
+            }
+        }
+        function apply () {
+            var alist = document.querySelectorAll('[ng-bind]');
+            for(var i=0,l=alist.length;i<l;i++){
+                var bindData = alist[i].getAttribute('ng-bind');
+                console.log(bindData);
+                alist[i].innerHTML = scope[bindData];
+            }
+        }
+   bind();
+   apply();
+    }
+</script>
+
+
+</body>
+</html>

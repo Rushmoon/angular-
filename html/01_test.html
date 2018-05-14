@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="DemoController">
+    <span ng-bind="num"></span>
+    <span ng-bind="num2"></span>
+    <button ng-click="num = num +1">点击</button>
+</div>
+<script src="../js/angular-1.6.js"></script>
+<script>
+    var App = angular.module('app',[]);
+    App.controller('DemoController',['$scope','$log',function ($scope,$log) {
+        $scope.num = 1;
+        $scope.num2 = 2;
+        $log.log($scope);
+    }]);
+</script>
+</body>
+</html>

@@ -1,1 +1,1 @@
-# angular-
+# angular-双向数据绑定的实现，02是使用angular自带的对象，03使用dom模拟脏检查，04自己重写scope，主要实现其中的$watch与$digest

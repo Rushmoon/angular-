@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //定义$scope 构造函数
+    function $scope() {
+        this.$watchList = [];
+    }
+    $scope.prototype.$watch = function (name,getNewValue,listener) {
+        var watch = {
+            name :name,
+            getNewValue :getNewValue,
+            listener : listener
+        }
+        this.$watchList.push(watch);
+    }
+    $scope.prototype.$digest = function () {
+        var list = this.$watchList;
+        for (var i = 0,l=list.length;i<l;i++){
+//            console.log(this);
+            var watch = list[i];
+            var newValue = watch.getNewValue(this);
+            var oldValue = watch.last;
+            if (newValue != oldValue){
+                watch.listener(newValue,oldValue);
+
+            }
+            watch.last = newValue;
+        }
+    }
+    function getNewValue(scope) {
+        console.log(scope);
+        console.log(this);
+        return scope[this.name];
+    }
+    var scope = new $scope();
+    scope.hello = 10;
+    scope.$watch('hello',function (scope) {getNewValue(scope);},function (newValue,oldValue) {});
+
+    scope.$digest();
+</script>
+</body>
+</html>

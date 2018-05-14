@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="DemoController">
+    <span>{{num1}}</span>
+    <span>{{num2}}</span>
+    <button my-click>点击</button>
+</div>
+<script src="../js/angular-1.6.js"></script>
+<script>
+    var App = angular.module('app',[]);
+    App.directive('myClick',function ($log) {
+        return function (scope,element,attr) {
+            element.on('click',function () {
+                scope.num1++;
+                $log.log(scope.num1);
+                scope.$digest();
+                //脏检查由scope下的digest来实现，如果有变化，则更新
+            })
+        }
+    });
+    App.controller('DemoController',['$scope','$log',function ($scope,$log) {
+            $scope.num1 = 1;
+            $scope.num2 = 2;
+            $log.info($scope);
+    }]);
+</script>
+</body>
+</html>
